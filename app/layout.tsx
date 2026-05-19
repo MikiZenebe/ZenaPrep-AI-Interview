@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
+import Header from "@/components/Header";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
       >
         <body className="min-h-full flex flex-col">
           {/* Header */}
+          <Header />
           <main className="min-h-screen">
             {" "}
             <ThemeProvider
