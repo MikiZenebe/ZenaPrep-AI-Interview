@@ -22,10 +22,10 @@ export const AVATARS = [
 export const AI_TAGS = [
   { label: "Frontend Engineer", active: true },
   { label: "L5 Level", active: true },
-  { label: "React Performance", active: false },
-  { label: "System Design", active: false },
+  { label: "React Performance", active: true },
+  { label: "System Design", active: true },
   { label: "Behavioural", active: true },
-  { label: "DSA", active: false },
+  { label: "DSA", active: true },
 ];
 
 export const SLOTS = [
@@ -94,8 +94,6 @@ export const PLANS = [
     ],
   },
 ];
-
-
 
 export const ROLES = [
   {
