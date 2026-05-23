@@ -12,6 +12,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AI_TAGS, AVATARS, LOGOS, ROLES, SLOTS } from "@/lib/data";
+import { PricingTable } from "@clerk/nextjs";
 import { Bot, Wallet } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -268,7 +269,7 @@ export default function LandingPage() {
           </p>
         </div>
 
-        <PricingSection />
+        <PricingTable />
       </section>
 
       {/* CTA */}
