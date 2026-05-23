@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { DM_Sans, Lora } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
+import Header from "@/components/Header";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -28,28 +31,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${lora.variable} ${dmSans.variable} h-full antialiased`}
-      suppressHydrationWarning
+    <ClerkProvider
+      appearance={{
+        theme: dark,
+      }}
     >
-      <body className="min-h-full flex flex-col">
-        {/* Header */}
+      <html
+        lang="en"
+        className={`${lora.variable} ${dmSans.variable} h-full antialiased`}
+        suppressHydrationWarning
+      >
+        <body className="min-h-full flex flex-col">
+          {/* Header */}
+          <Header />
+          <main className="min-h-screen">
+            {" "}
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </main>
 
-        <main className="min-h-screen">
-          {" "}
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </main>
-
-        {/* Footer */}
-      </body>
-    </html>
+          {/* Footer */}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

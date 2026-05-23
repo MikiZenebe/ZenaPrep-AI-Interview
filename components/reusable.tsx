@@ -1,0 +1,65 @@
+export const GrayTitle = ({ children }: { children: React.ReactNode }) => (
+  <span className="bg-linear-to-br from-stone-100 via-stone-300 to-stone-500 bg-clip-text text-transparent">
+    {children}
+  </span>
+);
+export const GoldTitle = ({ children }: { children: React.ReactNode }) => (
+  <span className="bg-linear-to-br from-[#207b5f] via-[#3AE4B2] to-[#207b5f] bg-clip-text text-transparent">
+    {children}
+  </span>
+);
+export const SectionLabel = ({ children }: { children: React.ReactNode }) => (
+  <p className="inline-flex items-center gap-2 text-xs font-semibold text-[#3AE4B2] tracking-[0.14em] uppercase mb-4">
+    <span className="w-4 h-px bg-[#3AE4B2]" />
+    {children}
+  </p>
+);
+export const SectionHeading = ({
+  gray,
+  gold,
+}: {
+  gray: string;
+  gold: string;
+}) => (
+  <h2
+    className={`font-serif text-[clamp(2rem,4vw,3rem)] leading-[1.1] tracking-[-0.025em]`}
+  >
+    <GrayTitle>{gray}</GrayTitle>
+    <br />
+    <GoldTitle>{gold}</GoldTitle>
+  </h2>
+);
+
+export default function PageHeader({
+  label,
+  gray,
+  gold,
+  description,
+  right,
+}: {
+  label?: string;
+  gray: string;
+  gold: string;
+  description?: string;
+  right?: React.ReactNode;
+}) {
+  return (
+    <div className="border-b border-white/8 px-8 py-10">
+      <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
+        <div>
+          {label && <SectionLabel>{label}</SectionLabel>}
+          <h1 className="font-serif text-5xl tracking-tight mt-1">
+            {gray && <GrayTitle>{gray} </GrayTitle>}
+            {gold && <GoldTitle>{gold}</GoldTitle>}
+          </h1>
+          {description && (
+            <p className="text-sm text-stone-500 font-light mt-2">
+              {description}
+            </p>
+          )}
+        </div>
+        {right && <div className="shrink-0">{right}</div>}
+      </div>
+    </div>
+  );
+}
