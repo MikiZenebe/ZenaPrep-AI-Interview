@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 
 export default function Header() {
   return (
-    <nav className="fixed top-0 inset-x-0 flex items-center justify-between px-10 py-3 border-b border-white/7 backdrop-blur-xl">
+    <nav className="fixed top-0 inset-x-0 flex items-center justify-between px-10 py-3 border-b border-white/7 backdrop-blur-xl z-50">
       <Link href="/" className="flex items-center">
         <Image
           src="/logo.png"

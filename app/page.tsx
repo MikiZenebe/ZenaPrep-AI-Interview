@@ -2,6 +2,7 @@
 
 import { CodeDemo } from "@/components/demo-components-animate-code";
 import { StarsBackgroundDemo } from "@/components/demo-components-backgrounds-start";
+import PricingSection from "@/components/PricingSection";
 import {
   GoldTitle,
   GrayTitle,
@@ -10,7 +11,7 @@ import {
 } from "@/components/reusable";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { AI_TAGS, AVATARS, LOGOS, SLOTS } from "@/lib/data";
+import { AI_TAGS, AVATARS, LOGOS, ROLES, SLOTS } from "@/lib/data";
 import { Bot, Wallet } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -119,7 +120,7 @@ export default function LandingPage() {
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 md:col-span-7">
             <BentoCard
-              icon={<Bot size={20} className="text-amber-400" />}
+              icon={<Bot size={20} className="text-[#3AE4B2]" />}
               title={<GrayTitle>AI Question Generator</GrayTitle>}
               desc="Interviewers get a live AI co-pilot generating role-specific questions on demand — system design, behavioural, DSA — all tailored to the candidate's level."
             >
@@ -135,14 +136,14 @@ export default function LandingPage() {
 
           <div className="col-span-12 md:col-span-5">
             <BentoCard
-              icon={<Wallet size={16} className="text-amber-400" />}
+              icon={<Wallet size={16} className="text-[#3AE4B2]" />}
               title={<GrayTitle>Credit System</GrayTitle>}
               desc="Subscribe for monthly credits. Book sessions. Interviewers earn and withdraw any time."
             >
               <div className="mt-5 rounded-xl bg-[#141417] border border-white/10 p-5 flex justify-between items-end">
                 <div>
                   <p className="text-xs text-stone-600 mb-1">Your balance</p>
-                  <p className="font-serif text-4xl leading-none bg-linear-to-br from-amber-300 to-amber-500 bg-clip-text text-transparent">
+                  <p className="font-serif text-4xl leading-none bg-linear-to-br from-[#3AE4B2] to-[#2bab85] bg-clip-text text-transparent">
                     28
                   </p>
                   <p className="text-xs text-stone-600 mt-1">
@@ -211,6 +212,95 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* ROLES */}
+      <section className="relative z-10 pb-28 max-w-5xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <SectionLabel>Who it&apos;s for</SectionLabel>
+          <SectionHeading gray="Built for both sides" gold="of the table" />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {ROLES.map((role) => (
+            <div
+              key={role.label}
+              className="relative bg-[#0f0f11] border border-white/10 hover:border-amber-400/20 rounded-2xl p-12 h-full transition duration-300 overflow-hidden"
+            >
+              <div className="absolute bottom-0 right-0 w-48 h-48 rounded-full bg-[radial-gradient(circle,rgba(251,191,36,0.05)_0%,transparent_70%)] pointer-events-none" />
+
+              <span className="inline-block text-xs font-semibold text-[#3AE4B2] tracking-widest uppercase border border-[#3AE4B2]/20 bg-[#3AE4B2]/10 rounded-full px-3 py-1.5 mb-5">
+                {role.label}
+              </span>
+
+              <h3 className="font-serif text-2xl tracking-tight mb-4">
+                {role.title}
+              </h3>
+
+              <p className="text-sm text-stone-400 leading-relaxed mb-8">
+                {role.desc}
+              </p>
+
+              <ul className="space-y-3">
+                {role.perks.map((p) => (
+                  <li key={p} className="flex gap-3 text-sm text-stone-400">
+                    <span className="mt-0.5 min-w-4 h-4 rounded-full bg-[#3AE4B2]/10 border border-[#3AE4B2]/20 flex items-center justify-center text-xs text-[#3AE4B2]">
+                      ✓
+                    </span>
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section className="relative z-10 pb-28 max-w-5xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <SectionLabel>Pricing</SectionLabel>
+          <SectionHeading
+            gray="Simple, transparent"
+            gold="credit-based plans"
+          />
+          <p className="text-stone-400 mt-3 text-sm">
+            Each credit = one session. Unused credits roll over.
+          </p>
+        </div>
+
+        <PricingSection />
+      </section>
+
+      {/* CTA */}
+      <section className="relative z-10 pb-28 max-w-5xl mx-auto px-6">
+        <div className="relative border border-amber-400/20 rounded-3xl px-3 sm:px-16 py-20 bg-linear-to-br from-amber-400/5 text-center overflow-hidden">
+          <StarsBackgroundDemo />
+
+          <h2 className="font-serif relative text-4xl md:text-5xl leading-tight tracking-tight mb-4">
+            <GrayTitle>Your next interview</GrayTitle>
+            <br />
+            <GoldTitle>starts here</GoldTitle>
+          </h2>
+
+          <p className="relative text-stone-400 font-light text-sm mb-11">
+            Join thousands of engineers already levelling up on Prept.
+          </p>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link href="/onboarding" className="relative">
+              <Button variant="green" size="hero">
+                Get started
+              </Button>
+            </Link>
+
+            <Link href="/explore" className="relative">
+              <Button variant="outline" size="hero">
+                Browse Interviewers →
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
@@ -230,11 +320,11 @@ export function BentoCard({
 }) {
   return (
     <div
-      className={`relative bg-[#0f0f11] border border-white/10 hover:border-amber-400/20 rounded-2xl p-9 h-full transition duration-300 overflow-hidden ${className}`}
+      className={`relative bg-[#0f0f11] border border-white/10 hover:border-[#3AE4B2]/20 rounded-2xl p-9 h-full transition duration-300 overflow-hidden ${className}`}
     >
-      <div className="absolute inset-0 bg-linear-to-br from-amber-400/5 via-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-br from-[#3AE4B2]/5 via-transparent pointer-events-none" />
 
-      <span className="w-11 h-11 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-xl mb-5">
+      <span className="w-11 h-11 rounded-xl bg-[#3AE4B2]/10 border border-[#3AE4B2]/20 flex items-center justify-center text-xl mb-5">
         {icon}
       </span>
 
@@ -254,7 +344,7 @@ function MockUI({ rows = 3 }) {
   const colors = [
     "bg-white/5",
     "bg-white/5",
-    "bg-amber-400/15",
+    "bg-[#3AE4B2]/15",
     "bg-white/5",
     "bg-white/5",
   ];
