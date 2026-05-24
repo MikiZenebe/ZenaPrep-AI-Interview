@@ -8,13 +8,10 @@ const PLAN_CREDITS = {
   free: 1,
 };
 
-const shouldAllocateCredits = ({
-  dbUser,
-  currentPlan,
-}: {
-  dbUser: any;
-  currentPlan: string;
-}) => {
+const shouldAllocateCredits = (
+  dbUser: any,
+  currentPlan: string,
+) => {
   // Always allocate if plan changed
   if (dbUser.currentPlan !== currentPlan) return true;
 

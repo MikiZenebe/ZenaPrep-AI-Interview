@@ -2,7 +2,6 @@
 
 import { CodeDemo } from "@/components/demo-components-animate-code";
 import { StarsBackgroundDemo } from "@/components/demo-components-backgrounds-start";
-import PricingSection from "@/components/PricingSection";
 import {
   GoldTitle,
   GrayTitle,
@@ -19,7 +18,7 @@ import Link from "next/link";
 
 export default function LandingPage() {
   return (
-    <div className="bg-black overflow-x-hidden">
+    <div className="bg-black overflow-x-hidden relative">
       <section className="relative min-h-screen grid grid-cols-1 lg:grid-cols-5 px-4 sm:px-8 pt-28 sm:pt-32 pb-20 overflow-hidden">
         <StarsBackgroundDemo />
 
@@ -257,7 +256,7 @@ export default function LandingPage() {
       </section>
 
       {/* PRICING */}
-      <section className="relative z-10 pb-28 max-w-5xl mx-auto px-6">
+      <section className="relative pb-28 max-w-5xl mx-auto px-6">
         <div className="text-center mb-16">
           <SectionLabel>Pricing</SectionLabel>
           <SectionHeading
@@ -269,7 +268,17 @@ export default function LandingPage() {
           </p>
         </div>
 
-        <PricingTable />
+        <PricingTable
+          checkoutProps={{
+            appearance: {
+              elements: {
+                drawerRoot: {
+                  zIndex: 2000,
+                },
+              },
+            },
+          }}
+        />
       </section>
 
       {/* CTA */}
