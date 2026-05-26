@@ -5,7 +5,6 @@ import ExploreGrid, { InterviewersResponse } from "./components/ExploreGrid";
 export default async function ExplorePage() {
   const interviewers = await getInterviewers();
 
-  console.log(interviewers);
   return (
     <main className="min-h-screen bg-black">
       {/* Page header */}
