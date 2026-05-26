@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { checkUser } from "@/lib/check-user";
 import { CalendarDays, Users } from "lucide-react";
 import CreditButton from "./CreditButton";
+import RoleRedirect from "./RoleRedirect";
 
 export default async function Header() {
   const user = await checkUser();
@@ -24,6 +25,8 @@ export default async function Header() {
           ዘና-Prep
         </span>
       </Link>
+
+      {user && <RoleRedirect role={user.role} />}
 
       {/* Sign in */}
       <div className="flex items-center gap-3">
