@@ -3,10 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
+import { checkUser } from "@/lib/check-user";
+import { CalendarDays, Users } from "lucide-react";
+import CreditButton from "./CreditButton";
+import RoleRedirect from "./RoleRedirect";
 
-export default function Header() {
+export default async function Header() {
+  const user = await checkUser();
+
   return (
-    <nav className="fixed top-0 inset-x-0 flex items-center justify-between px-10 py-3 border-b border-white/7 backdrop-blur-xl z-50">
+    <nav className="fixed top-0 inset-x-0 flex items-center justify-between px-10 py-3 border-b border-white/7 backdrop-blur-xl z-30">
       <Link href="/" className="flex items-center">
         <Image
           src="/logo.png"
@@ -20,13 +26,11 @@ export default function Header() {
         </span>
       </Link>
 
+      {user && <RoleRedirect role={user.role} />}
+
       {/* Sign in */}
       <div className="flex items-center gap-3">
         <Show when="signed-out">
-          {/* Links */}
-
-          {/* Credits */}
-
           <SignInButton mode="modal">
             <Button variant="ghost">Sign In</Button>
           </SignInButton>
@@ -36,6 +40,39 @@ export default function Header() {
         </Show>
 
         <Show when="signed-in">
+          {/* Links */}
+          {user?.role === "INTERVIEWER" && (
+            <Button variant="green" asChild>
+              <Link href="/dashboard">Dashboard</Link>
+            </Button>
+          )}
+
+          {user?.role === "INTERVIEWEE" && (
+            <>
+              <Button variant="ghost" asChild>
+                <Link href="/explore">
+                  <Users size={16} />
+                  <span className="hidden md:inline">Explore</span>
+                </Link>
+              </Button>
+              <Button variant="green" asChild>
+                <Link href="/appointments">
+                  <CalendarDays size={16} />
+                  <span className="hidden md:inline">My Appointments</span>
+                </Link>
+              </Button>
+            </>
+          )}
+
+          {/* Credits */}
+          <CreditButton
+            role={user?.role === "INTERVIEWER" ? "INTERVIEWER" : "INTERVIEWEE"}
+            credits={
+              (user?.role === "INTERVIEWER"
+                ? user?.creditBalance
+                : user?.credits) ?? 0
+            }
+          />
           <UserButton />
         </Show>
       </div>
