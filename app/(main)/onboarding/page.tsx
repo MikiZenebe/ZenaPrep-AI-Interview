@@ -150,7 +150,7 @@ export default function OnboardingPage() {
                       onChange={(e) =>
                         setForm((p) => ({ ...p, title: e.target.value }))
                       }
-                      className="border-slate-100/10 bg-slate-100/5"
+                      className="border-slate-100/10 bg-slate-100/5 text-white"
                     />
                   </div>
 
@@ -163,7 +163,7 @@ export default function OnboardingPage() {
                       onChange={(e) =>
                         setForm((p) => ({ ...p, company: e.target.value }))
                       }
-                      className="border-slate-100/10 bg-slate-100/5"
+                      className="border-slate-100/10 bg-slate-100/5 text-white"
                     />
                   </div>
                 </div>
@@ -221,7 +221,7 @@ export default function OnboardingPage() {
                   onChange={(e) =>
                     setForm((p) => ({ ...p, bio: e.target.value }))
                   }
-                  className="border-slate-100/10 bg-slate-100/5"
+                  className="border-slate-100/10 bg-slate-100/5 text-white "
                 />
               </div>
             )}

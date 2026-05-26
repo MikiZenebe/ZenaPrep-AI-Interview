@@ -41,7 +41,7 @@ export const completeOnboarding = async (data: OnboardingData) => {
           company,
           yearsExp,
           bio,
-          categories,
+          categories: categories as any,
         }),
       },
     });
