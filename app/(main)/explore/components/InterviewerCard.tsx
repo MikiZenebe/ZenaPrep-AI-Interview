@@ -38,7 +38,7 @@ export default function InterviewerCard({
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
             <Avatar className="w-11 h-11 border border-white/10 shrink-0">
-              <AvatarImage src={imageUrl} alt={name} />
+              <AvatarImage src={imageUrl ?? undefined} alt={name ?? undefined} />
               <AvatarFallback className="bg-[#3AE4B2]/10 border border-[#3AE4B2]/20 text-[#3AE4B2] text-sm font-medium">
                 {name?.[0] ?? "?"}
               </AvatarFallback>
